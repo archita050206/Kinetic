@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { useAuth } from "@/app/providers";
 import { Space_Grotesk } from "next/font/google";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 
 const uiFont = Space_Grotesk({
@@ -57,41 +58,42 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
         }, [router, status]);
     if (status === "loading") {
         return (
-        <main className={`${uiFont.className} min-h-screen bg-[#131314] px-6 py-12 text-[#e5e2e3]`}>
-            <div className="mx-auto w-full max-w-6xl text-sm tracking-[0.14em] text-[#bbaaa2]">VERIFYING SESSION...</div>
+        <main className={`${uiFont.className} min-h-screen bg-[#E6D5A4] dark:bg-[#131314] px-6 py-12 text-[#68220D] dark:text-[#e5e2e3]`}>
+            <div className="mx-auto w-full max-w-6xl text-sm tracking-[0.14em] text-gray-700 dark:text-[#bbaaa2]">VERIFYING SESSION...</div>
         </main>
         );
     }
 
   return (
-    <div className={`${uiFont.className} flex h-screen flex-col bg-[#0D0E10] text-[#e5e2e3]`}>
+    <div className={`${uiFont.className} flex h-screen flex-col bg-[#E6D5A4] dark:bg-[#0D0E10] text-[#68220D] dark:text-[#e5e2e3]`}>
       {/* NAVBAR */}
-      <header className="sticky top-0 z-40 w-full border-b border-[#3b3430]/80 bg-[#0f1218]/95 backdrop-blur">
+      <header className="sticky top-0 z-40 w-full border-b border-[#3b3430]/20 dark:border-[#3b3430]/80 bg-[#E6D5A4]/95 dark:bg-[#0f1218]/95 backdrop-blur">
         <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-3 text-[10px] tracking-[0.16em] sm:h-16 sm:px-6 sm:text-[11px] sm:tracking-[0.2em] lg:px-8">
-          <div className="flex h-full items-center text-[#8f8078]">
-            <span className="text-sm font-bold tracking-[0.12em] text-[#ffb77b] sm:text-base sm:tracking-[0.14em]">KINETIC_LABS</span>
+          <div className="flex h-full items-center text-[#68220D] dark:text-[#8f8078]">
+            <span className="text-sm font-bold tracking-[0.12em] text-[#68220D] dark:text-[#ffb77b] sm:text-base sm:tracking-[0.14em]">KINETIC_LABS</span>
           </div>
           <div className="flex items-center gap-1 sm:gap-2">
+              
               <button
                 type="button"
                 aria-label="Notifications"
-                className="grid h-8 w-8 place-items-center rounded-lg text-[#9f8e86] transition hover:text-[#ffb77b] sm:h-9 sm:w-9"
+                className="grid h-8 w-8 place-items-center rounded-lg text-[#68220D] dark:text-[#9f8e86] transition hover:opacity-70 sm:h-9 sm:w-9"
               >
                 <BellIcon />
               </button>
               <button
                 type="button"
                 aria-label="Settings"
-                className="grid h-8 w-8 place-items-center rounded-lg text-[#9f8e86] transition hover:text-[#ffb77b] sm:h-9 sm:w-9"
+                className="grid h-8 w-8 place-items-center rounded-lg text-[#68220D] dark:text-[#9f8e86] transition hover:opacity-70 sm:h-9 sm:w-9"
               >
-                <SettingsIcon />
+               <ThemeToggle />
               </button>
               <button
                 type="button"
                 onClick={handleLogout}
                 disabled={isBusy}
                 aria-label="User / Logout"
-                className="grid h-8 w-8 place-items-center rounded-lg border border-[#ffb77b]/40 text-[#ffb77b] transition hover:bg-[#ffb77b]/10 disabled:opacity-60 sm:h-9 sm:w-9"
+                className="grid h-8 w-8 place-items-center rounded-lg border border-[#68220D]/40 dark:border-[#ffb77b]/40 text-[#68220D] dark:text-[#ffb77b] transition hover:bg-[#68220D]/10 dark:hover:bg-[#ffb77b]/10 disabled:opacity-60 sm:h-9 sm:w-9"
               >
                 <UserIcon />
               </button>

@@ -69,8 +69,11 @@ return [
             'url' => env('SUPABASE_URL') . '/storage/v1/object/public/' . env('SUPABASE_BUCKET', 'images'),
             'endpoint' => env('SUPABASE_URL') . '/storage/v1/s3',
             'use_path_style_endpoint' => true,
-            'throw' => false,
+            'throw' => true,
             'report' => false,
+            'http' => [
+                'verify' => env('SUPABASE_SSL_VERIFY', true),
+            ],
         ],
 
     ],

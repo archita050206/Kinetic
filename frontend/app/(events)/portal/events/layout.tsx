@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useAuth } from "@/app/providers";
 import { Space_Grotesk } from "next/font/google";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 
 const uiFont = Space_Grotesk({
@@ -165,41 +166,41 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
         }, [router, status]);
     if (status === "loading") {
         return (
-        <main className={`${uiFont.className} min-h-screen bg-[#131314] px-6 py-12 text-[#e5e2e3]`}>
-            <div className="mx-auto w-full max-w-6xl text-sm tracking-[0.14em] text-[#bbaaa2]">VERIFYING SESSION...</div>
+        <main className={`${uiFont.className} min-h-screen bg-[#E6D5A4] dark:bg-[#131314] px-6 py-12 text-[#68220D] dark:text-[#e5e2e3]`}>
+            <div className="mx-auto w-full max-w-6xl text-sm tracking-[0.14em] text-gray-700 dark:text-[#bbaaa2]">VERIFYING SESSION...</div>
         </main>
         );
     }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#090b10] text-[#e5e2e3]">
+    <div className={`${uiFont.className} min-h-screen flex flex-col bg-[#E6D5A4] dark:bg-[#090b10] text-[#68220D] dark:text-[#e5e2e3]`}>
       {/* NAVBAR */}
-      <header className="w-full z-40 bg-[#0f1218]/95 border-b border-[#3b3430]/80 px-0 py-0 backdrop-blur sticky top-0">
-        <div className="mx-auto flex min-h-15 w-full max-w-400 items-center justify-between gap-3 px-4 py-3 text-[11px] tracking-[0.2em] sm:px-8 lg:h-15 lg:py-0">
-          <div className="flex h-full min-w-0 items-center gap-6 text-[#8f8078] lg:gap-10">
-            <Link href="/portal"><span className="text-lg font-bold tracking-[0.14em] text-[#ffb77b]">KINETIC_LABS</span></Link>
+      <header className="w-full z-40 border-b border-[#3b3430]/40 dark:border-[#3b3430]/80 bg-[#fcfbfa] dark:bg-[#0f1218]/95 px-0 py-0 backdrop-blur sticky top-0">
+        <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-3 text-[10px] tracking-[0.16em] sm:h-16 sm:px-6 sm:text-[11px] sm:tracking-[0.2em] lg:px-8">
+          <div className="flex h-full items-center text-slate-800 dark:text-[#8f8078] lg:gap-10">
+            <Link href="/portal"><span className="text-lg font-bold tracking-[0.14em] text-slate-800 dark:text-[#ffb77b]">KINETIC_LABS</span></Link>
           </div>
           <div className="flex shrink-0 items-center gap-2">
               <button
                 type="button"
                 aria-label="Notifications"
-                className="grid h-9 w-9 place-items-center rounded-lg text-[#9f8e86] hover:text-[#ffb77b] transition"
+                className="grid h-9 w-9 place-items-center rounded-lg text-[#68220D] dark:text-[#9f8e86] hover:opacity-70 transition"
               >
                 <BellIcon />
               </button>
               <button
                 type="button"
                 aria-label="Settings"
-                className="grid h-9 w-9 place-items-center rounded-lg text-[#9f8e86] hover:text-[#ffb77b] transition"
+                className="grid h-9 w-9 place-items-center rounded-lg text-[#68220D] dark:text-[#9f8e86] hover:opacity-70 transition"
               >
-                <SettingsIcon />
+                <ThemeToggle />
               </button>
               <button
                 type="button"
                 onClick={handleLogout}
                 disabled={isBusy}
                 aria-label="User / Logout"
-                className="grid h-9 w-9 place-items-center rounded-lg border border-[#ffb77b]/40 text-[#ffb77b] hover:bg-[#ffb77b]/10 transition disabled:opacity-60"
+                className="grid h-9 w-9 place-items-center rounded-lg border border-[#68220D]/40 dark:border-[#ffb77b]/40 text-[#68220D] dark:text-[#ffb77b] hover:bg-[#68220D]/10 dark:hover:bg-[#ffb77b]/10 transition disabled:opacity-60"
               >
                 <UserIcon />
               </button>
@@ -210,7 +211,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
       {/* BODY: Sidebar + Main Content */}
       <div className="flex flex-1 pb-16 lg:pb-0">
         {/* SIDEBAR */}
-        <aside className="hidden lg:flex flex-col items-center w-18 shrink-0 border-r border-[#3b3430]/60 bg-[#0d1016]/90 py-5 gap-1 sticky top-15 h-[calc(100vh-60px)]">
+        <aside className="hidden lg:flex flex-col items-center w-18 shrink-0 border-r border-[#3b3430]/20 dark:border-[#3b3430]/60 bg-gray-100 dark:bg-[#0d1016]/90 py-5 gap-1 sticky top-15 h-[calc(100vh-60px)]">
           {/* <button onClick={() => router.push(`/portal/events/${eventId}`)}><div className="mb-4 text-[10px] font-bold tracking-[0.3em] text-[#ffb77b]">KL</div></button> */}
           <SideRailButton icon={<AnalyticsIcon />} label="TERMINAL" router={router} pathname={pathname} route="/" />
           <SideRailButton icon={<EventsIcon />} label="IMAGES" router={router} pathname={pathname} route="/images" />
@@ -231,7 +232,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
           {children}
         </main>
       </div>
-      <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 border-t border-[#3b3430]/80 bg-[#0d1016]/95 px-3 py-2 text-[#6b5c54] lg:hidden">
+      <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-4 border-t border-[#3b3430]/20 dark:border-[#3b3430]/80 bg-[#E6D5A4]/95 dark:bg-[#0d1016]/95 px-3 py-2 text-[#68220D] dark:text-[#6b5c54] lg:hidden">
         <SideRailButton icon={<EventsIcon />} label="IMAGES" router={router} pathname={pathname} route="/images" />
           <SideRailButton icon={<GridIcon />} label="GRID" router={router} pathname={pathname} route="/" />
           <SideRailButton icon={<GuestsIcon />} label="GUESTS" router={router} pathname={pathname} route="/guests" />

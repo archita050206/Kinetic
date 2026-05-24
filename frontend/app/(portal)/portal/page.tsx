@@ -195,7 +195,7 @@ export default function PortalEventsPage() {
   }
 
   return (
-    <main className={`${uiFont.className} h-full relative overflow-x-clip bg-[#101112] text-[#f4eee9]`}>
+    <main className={`${uiFont.className} h-full relative overflow-x-clip bg-[#f2ead1] dark:bg-[#101112] text-[#f4eee9]`}>
         <div className="pointer-events-none absolute inset-y-0 right-[-22%] hidden w-[80%] md:block lg:right-[-14%] lg:w-[70%] xl:right-0 xl:w-[55%]">
             <Image
               src="/events.gif"

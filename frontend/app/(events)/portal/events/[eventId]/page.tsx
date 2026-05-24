@@ -96,63 +96,63 @@ export default function EventDashboardPage() {
   const acceptedPercent = event?.invitationCount ? Math.round((event.acceptedCount / event.invitationCount) * 100) : 0;
 
   return (
-    <main className={`${uiFont.className} min-h-screen bg-[#0b0d0f] text-[#e6e1dd] py-10`}> 
+    <main className={`${uiFont.className} min-h-screen bg-white/95 dark:bg-[#0b0d0f] text-[#68220D] dark:text-[#e6e1dd] py-10`}> 
       <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
         <div className="mx-auto px-6">
           <header className="mb-8">
-            <p className="text-[10px] tracking-[0.28em] text-[#a58f83]">EVENT_STATUS: {event?.status ?? "LOADING"}</p>
-            <h1 className={`${displayFont.className} text-5xl font-semibold italic text-[#f6d3a6] leading-tight`}>Event Terminal</h1>
-            <p className="mt-2 text-sm text-[#b9a59b]">Event-specific command center for managing high-stakes logistics, guest protocols, and synthetic telemetry.</p>
+            <p className="text-[10px] tracking-[0.28em] text-[#401508] dark:text-[#a58f83]">EVENT_STATUS: {event?.status ?? "LOADING"}</p>
+            <h1 className={`${displayFont.className} text-5xl font-semibold italic text-[#60200d] dark:text-[#f6d3a6] leading-tight`}>Event Terminal</h1>
+            <p className="mt-2 text-sm text-[#401508] dark:text-[#b9a59b]">Event-specific command center for managing high-stakes logistics, guest protocols, and synthetic telemetry.</p>
           </header>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <section className="lg:col-span-2">
-              <div className="rounded-lg border border-[#2c2520] bg-[#0f1113] p-8">
+              <div className="rounded-lg border border-[#2c2520]  bg-gray-100/90 dark:bg-[#0f1113] p-8">
                 <div className="flex items-start justify-between mb-6">
                   <div>
-                    <h2 className={`${displayFont.className} text-3xl italic text-[#e6dad3]`}>RSVP Momentum</h2>
-                    <p className="text-[10px] tracking-[0.18em] text-[#8f8078] mt-1">{event?.region ?? "AWS | ap-south-1"}</p>
+                    <h2 className={`${displayFont.className} text-3xl italic text-[#68220D] dark:text-[#e6dad3]`}>RSVP Momentum</h2>
+                    <p className="text-[10px] tracking-[0.18em] text-[#401508] dark:text-[#8f8078] mt-1">{event?.region ?? "AWS | ap-south-1"}</p>
                   </div>
-                  <div className="text-right">
-                    <p className="text-5xl font-semibold italic text-[#f3bf7a]">{acceptedPercent}%</p>
-                    <p className="text-[10px] tracking-[0.2em] text-[#8f8078]">ACCEPTED</p>
+                  <div className="text-right ">
+                    <p className="text-5xl font-semibold italic text-[#68220D] dark:text-[#f3bf7a]">{acceptedPercent}%</p>
+                    <p className="text-[10px] tracking-[0.2em] text-[#401508] dark:text-[#8f8078]">ACCEPTED</p>
                   </div>
                 </div>
 
                 <div className="flex flex-col lg:flex-row gap-6">
                   <div className="flex-1 flex items-center justify-center">
-                    <div className="w-full h-56 rounded-md border border-[#302922] bg-gradient-to-b from-[#0f1214] to-[#0b0d0f] flex items-center justify-center">
+                    <div className="w-full h-56 rounded-md border border-[#302922] bg-[#e8cbae] dark:bg-[#0b0d0f] flex items-center justify-center">
                       <div className="text-center">
                         <p className="text-[110px] font-extralight text-[#2a221f] -tracking-tight opacity-40">{acceptedPercent}%</p>
-                        <p className="-mt-20 text-2xl font-semibold text-[#f3bf7a]">{acceptedPercent}%</p>
+                        <p className="-mt-20 text-2xl font-semibold text-[#8a4a37] dark:text-[#f3bf7a]">{acceptedPercent}%</p>
                       </div>
                     </div>
                   </div>
 
                   <div className="w-64">
-                    <div className="rounded-md border border-[#2b2520] bg-[#0e1113] p-4 mb-4">
-                      <p className="text-[10px] tracking-[0.18em] text-[#8f8078]">INVITES</p>
-                      <p className="mt-1 text-2xl font-medium text-[#e6ddd5]">{event?.invitationCount ?? 'Loading...'}</p>
+                    <div className="rounded-md border border-[#2b2520] bg-[#e8cbae]  dark:bg-[#0e1113] p-4 mb-4">
+                      <p className="text-[10px] tracking-[0.18em] text-[#401508] dark:text-[#8f8078]">INVITES</p>
+                      <p className="mt-1 text-2xl font-medium text-[rgb(158,75,3)]">{event?.invitationCount ?? 'Loading...'}</p>
                     </div>
-                    <div className="rounded-md border border-[#2b2520] bg-[#0e1113] p-4 mb-4">
-                      <p className="text-[10px] tracking-[0.18em] text-[#8f8078]">ACCEPTED</p>
-                      <p className="mt-1 text-2xl font-medium text-[#f3bf7a]">{event?.acceptedCount ?? 'Loading...'}</p>
+                    <div className="rounded-md border border-[#2b2520] bg-[#e8cbae] dark:bg-[#0e1113] p-4 mb-4">
+                      <p className="text-[10px] tracking-[0.18em] text-[#401508] dark:text-[#8f8078]">ACCEPTED</p>
+                      <p className="mt-1 text-2xl font-medium text-[#642b1a] dark:text-[#f3bf7a]">{event?.acceptedCount ?? 'Loading...'}</p>
                     </div>
-                    <div className="rounded-md border border-[#2b2520] bg-[#0e1113] p-4">
-                      <p className="text-[10px] tracking-[0.18em] text-[#8f8078]">PENDING</p>
-                      <p className="mt-1 text-2xl font-medium text-[#e6ddd5]">{Math.max((event?.invitationCount ?? 0) - (event?.acceptedCount ?? 0), 0)}</p>
+                    <div className="rounded-md border border-[#2b2520] bg-[#e8cbae]  dark:bg-[#0e1113] p-4">
+                      <p className="text-[10px] tracking-[0.18em] text-[#401508] dark:text-[#8f8078]">PENDING</p>
+                      <p className="mt-1 text-2xl font-medium text-[rgb(158,75,3)] dark:text-[#e6ddd5]">{Math.max((event?.invitationCount ?? 0) - (event?.acceptedCount ?? 0), 0)}</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="rounded-lg border border-[#2b2520] bg-[#0f1113] p-4 cursor-pointer hover:border-[#3c332d] transition" onClick={handleOpenLogsModal}>
+                <div className="rounded-lg border border-[#2b2520] bg-gray-100/90 dark:bg-[#0f1113] p-4 cursor-pointer hover:border-[#3c332d] transition" onClick={handleOpenLogsModal}>
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className={`${displayFont.className} text-xl italic text-[#e6dad3]`}>Protocol Log</h3>
-                    <p className="text-[9px] tracking-[0.18em] text-[#8f8078]">{totalLogs} TOTAL</p>
+                    <h3 className={`${displayFont.className} text-xl italic text-[#68220D] dark:text-[#e6dad3]`}>Protocol Log</h3>
+                    <p className="text-[9px] tracking-[0.18em] text-[#301107] dark:text-[#8f8078]">{totalLogs} TOTAL</p>
                   </div>
-                  <div className="bg-[#070808] rounded-md p-4 text-xs text-[#c9bdae]" style={{ minHeight: 180 }}>
+                  <div className="bg-[#341b03] dark:bg-[#070808] rounded-md p-4 text-xs  dark:text-[#c9bdae]" style={{ minHeight: 180 }}>
                     {recentLogs.length === 0 ? (
                       <div className="flex items-center justify-center h-full">
                         <p className="text-[#9f8e86]">No activity logged yet</p>
@@ -169,33 +169,33 @@ export default function EventDashboardPage() {
                       </ul>
                     )}
                   </div>
-                  <p className="text-[10px] tracking-[0.1em] text-[#8f8078] mt-3 hover:text-[#a58f83] transition">CLICK TO VIEW ALL LOGS →</p>
+                  <p className="text-[10px] tracking-[0.1em] text-[#301006] dark:text-[#8f8078] mt-3 hover:text-[#a58f83] transition">CLICK TO VIEW ALL LOGS →</p>
                 </div>
 
-                <div className="rounded-lg border border-[#2b2520] bg-[#0f1113] p-6">
-                  <h3 className={`${displayFont.className} text-2xl italic text-[#e6dad3]`}>Synthetic Catalyst 01</h3>
-                  <p className="mt-2 text-sm text-[#c5b3a8]">Open the Guests rail to send event-specific invitations and initiate the primary catalyst protocol.</p>
-                  <div className="mt-6 border-t border-[#2b2520] pt-4 text-sm text-[#8f8078]">
+                <div className="rounded-lg border border-[#2b2520] bg-gray-100/90 dark:bg-[#0f1113] p-6">
+                  <h3 className={`${displayFont.className} text-2xl italic text-[#68220D] dark:text-[#e6dad3]`}>Synthetic Catalyst 01</h3>
+                  <p className="mt-2 text-sm text-[#381308] dark:text-[#c5b3a8]">Open the Guests rail to send event-specific invitations and initiate the primary catalyst protocol.</p>
+                  <div className="mt-6 border-t border-[#2b2520] pt-4 text-sm text-[#2c0d03] dark:text-[#8f8078]">
                     <p className="text-[10px] tracking-[0.2em]">ACTIVE USER</p>
-                    <p className="mt-1 text-sm font-medium text-[#ffcfaa]">{session?.user.name}</p>
-                    <p className="text-xs text-[#9f8e86]">{session?.user.email}</p>
+                    <p className="mt-1 text-sm font-medium  text-[#74311d] dark:text-[#ffcfaa]">{session?.user.name}</p>
+                    <p className="text-xs text-[#2c0d03] dark:text-[#9f8e86]">{session?.user.email}</p>
                   </div>
                 </div>
               </div>
             </section>
 
             <aside>
-              <div className="rounded-lg border border-[#2b2520] bg-[#0f1113] p-6 flex flex-col items-center">
-                <div className="h-44 w-44 rounded-full border border-[#3c332d] flex items-center justify-center mb-4" style={{ background: `conic-gradient(#f3bf7a 0deg, #f3bf7a ${acceptedPercent * 3.6}deg, #151517 ${acceptedPercent * 3.6}deg 360deg)` }}>
-                  <div className="h-36 w-36 rounded-full bg-[#0b0d0f] flex items-center justify-center">
+              <div className="rounded-lg border border-[#2b2520] bg-gray-100/90 dark:bg-[#0f1113] p-6 flex flex-col items-center">
+                <div className="h-44 w-44 rounded-full border border-[#3c332d] flex items-center justify-center mb-4" style={{ background: `conic-gradient(#723f0f 0deg, #723f0f ${acceptedPercent * 3.6}deg, #723f0f ${acceptedPercent * 3.6}deg 360deg)` }}>
+                  <div className="h-36 w-36 rounded-full bg-[#723f0f] dark:bg-[#0b0d0f] flex items-center justify-center">
                     <div className="text-center">
                       <p className="text-4xl font-semibold text-[#f3bf7a]">{acceptedPercent}%</p>
                       <p className="text-[10px] tracking-[0.2em] text-[#8f8078]">RSVP</p>
                     </div>
                   </div>
                 </div>
-                <h4 className={`${displayFont.className} text-lg italic text-[#e6dad3] mb-2`}>Guest Flow</h4>
-                <p className="text-sm text-[#c5b3a8] text-center">Real-time capacity and arrival sequencing for optimized entry protocols.</p>
+                <h4 className={`${displayFont.className} text-lg italic text-[#68220D] dark:text-[#e6dad3] mb-2`}>Guest Flow</h4>
+                <p className="text-sm text-[#2b0e06] dark:text-[#c5b3a8] text-center">Real-time capacity and arrival sequencing for optimized entry protocols.</p>
               </div>
             </aside>
           </div>
