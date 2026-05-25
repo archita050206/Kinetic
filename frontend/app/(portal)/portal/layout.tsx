@@ -65,9 +65,9 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
     }
 
   return (
-    <div className={`${uiFont.className} flex h-screen flex-col bg-[#E6D5A4] dark:bg-[#0D0E10] text-[#68220D] dark:text-[#e5e2e3]`}>
+    <div className={`${uiFont.className} flex h-screen flex-col bg-[#fcfbfa] dark:bg-[#0D0E10] text-[#68220D] dark:text-[#e5e2e3]`}>
       {/* NAVBAR */}
-      <header className="sticky top-0 z-40 w-full border-b border-[#3b3430]/20 dark:border-[#3b3430]/80 bg-[#E6D5A4]/95 dark:bg-[#0f1218]/95 backdrop-blur">
+      <header className="sticky top-0 z-40 w-full border-b border-[#3b3430]/20 dark:border-[#3b3430]/40 bg-[#fcfbfa] dark:bg-[#0f1218]/95 backdrop-blur">
         <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-3 text-[10px] tracking-[0.16em] sm:h-16 sm:px-6 sm:text-[11px] sm:tracking-[0.2em] lg:px-8">
           <div className="flex h-full items-center text-[#68220D] dark:text-[#8f8078]">
             <span className="text-sm font-bold tracking-[0.12em] text-[#68220D] dark:text-[#ffb77b] sm:text-base sm:tracking-[0.14em]">KINETIC_LABS</span>
@@ -81,13 +81,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
               >
                 <BellIcon />
               </button>
-              <button
-                type="button"
-                aria-label="Settings"
-                className="grid h-8 w-8 place-items-center rounded-lg text-[#68220D] dark:text-[#9f8e86] transition hover:opacity-70 sm:h-9 sm:w-9"
-              >
-               <ThemeToggle />
-              </button>
+              <ThemeToggle />
               <button
                 type="button"
                 onClick={handleLogout}

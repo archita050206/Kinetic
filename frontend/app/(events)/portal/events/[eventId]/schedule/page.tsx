@@ -365,7 +365,7 @@ export default function SchedulePage() {
     // Use a color from the palette based on current event count
     const color = EVENT_COLORS[events.length % EVENT_COLORS.length];
 
-    createEventSchedule(backendEventId,  {
+    createEventSchedule(backendEventId, {
       date_key: composer.dateKey,
       start_time: draftStartTime,
       end_time: draftEndTime,
@@ -375,15 +375,15 @@ export default function SchedulePage() {
     })
       .then((newSchedule) => {
         setEvents((current) => [...current, newSchedule]);
-        
+
         // Log to session
-        logSessionActivity(backendEventId,  "schedule_created", `Created schedule: ${newSchedule.title}`, {
+        logSessionActivity(backendEventId, "schedule_created", `Created schedule: ${newSchedule.title}`, {
           schedule_id: newSchedule.id,
           title: newSchedule.title,
           date: newSchedule.date_key,
           time: `${newSchedule.start_time} - ${newSchedule.end_time}`,
         });
-        
+
         setMessage(`Added ${newSchedule.title} on ${formatDayLabel(composer.dateKey)}.`);
         setDraftTitle("");
         setDraftNote("");
@@ -438,10 +438,8 @@ export default function SchedulePage() {
   }
 
   return (
-    <main className={`${uiFont.className} relative min-h-screen overflow-y-auto bg-[#05070a] text-[#e9e1d8]`}>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,183,123,0.14),transparent_28%),radial-gradient(circle_at_top_right,rgba(103,212,255,0.12),transparent_26%),linear-gradient(180deg,#06080c_0%,#05070a_60%,#070a0d_100%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[72px_72px] opacity-30" />
-      
+    <main className={`${uiFont.className} relative min-h-screen overflow-y-auto bg-white/95 dark:bg-[#05070a] text-[#e9e1d8]`}>
+
       {loading && (
         <div className="relative z-20 flex h-screen items-center justify-center">
           <div className="text-center">
@@ -460,359 +458,357 @@ export default function SchedulePage() {
       )}
 
       {!loading && !error && (
-      <div className="relative z-10 mx-auto flex w-full flex-col gap-4 px-3 py-4 sm:gap-5 sm:px-5 sm:py-5 lg:gap-6 lg:px-8 lg:py-6">
-        <motion.section
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
-          className="grid gap-3 rounded-2xl border border-white/10 bg-[#0b1016]/85 p-3 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur sm:gap-4 sm:rounded-3xl sm:p-4 lg:grid-cols-[1.2fr_0.8fr] lg:gap-4 lg:rounded-[28px] lg:p-6"
-        >
-          <div className="space-y-2 sm:space-y-3">
-            <p className="text-[9px] font-semibold tracking-[0.32em] text-[#8f8078] sm:text-[10px]">SCHEDULE_CONTROL</p>
-            <h1 className={`${displayFont.className} text-2xl italic leading-[0.95] text-[#f1ddcc] sm:text-4xl lg:text-6xl`}>
-              {formatMonthLabel(viewMonth)}
-            </h1>
-            <p className="max-w-2xl text-xs leading-5 text-[#b9aca4] sm:text-sm sm:leading-6 lg:text-[15px]">
-              Click any day to pin the composer, or hover a date to preview the add-event modal. New events are stored for this event page in your browser.
-            </p>
-          </div>
-
-          <div className="grid gap-2 grid-cols-3 sm:gap-3 lg:grid-cols-3">
-            <div className="rounded-xl border border-white/10 bg-[#111821] p-2.5 sm:rounded-2xl sm:p-4">
-              <p className="text-[8px] tracking-[0.24em] text-[#8f8078] sm:text-[9px]">MONTH EVENTS</p>
-              <p className="mt-1.5 text-2xl font-semibold text-[#ffcfaa] sm:mt-2 sm:text-3xl">{monthEvents.length.toString()}</p>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-[#111821] p-2.5 sm:rounded-2xl sm:p-4">
-              <p className="text-[8px] tracking-[0.24em] text-[#8f8078] sm:text-[9px]">SELECTED DAY</p>
-              <p className="mt-1.5 text-sm font-semibold text-[#e8ddd4] sm:mt-2 sm:text-base">{formatShortDay(selectedDateKey)}</p>
-              <p className="mt-0.5 text-[9px] tracking-[0.16em] text-[#8f8078] sm:mt-1 sm:text-[11px]">{selectedDateEvents.length} event(s)</p>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-[#111821] p-2.5 sm:rounded-2xl sm:p-4">
-              <p className="text-[8px] tracking-[0.24em] text-[#8f8078] sm:text-[9px]">STATUS</p>
-              <p className="mt-1.5 text-sm font-semibold text-[#a7f3d0] sm:mt-2 sm:text-base">LIVE</p>
-              <p className="mt-0.5 text-[9px] tracking-[0.16em] text-[#8f8078] sm:mt-1 sm:text-[11px]">Responsive calendar ready</p>
-            </div>
-          </div>
-        </motion.section>
-
-        <section className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_300px] xl:grid-cols-[minmax(0,1fr)_320px]">
-          <motion.div
+        <div className="relative z-10 mx-auto flex w-full flex-col gap-4 px-3 py-4 sm:gap-5 sm:px-5 sm:py-5 lg:gap-6 lg:px-8 lg:py-6">
+          <motion.section
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.08 }}
-            className="rounded-2xl border border-white/10 bg-[#0a0e12]/88 p-3 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur sm:rounded-3xl sm:p-4 lg:rounded-[28px] lg:p-5"
+            transition={{ duration: 0.45 }}
+            className="grid gap-3 rounded-2xl border border-gray-400 dark:border-white/10 bg-white/95 dark:bg-[#0b1016]/85 p-3 shadow-[0_12px_40px_rgba(0,0,0,0.18)] dark:shadow-[0_24px_80px_rgba(0,0,0,0.35)] dark:backdrop-blur sm:gap-4 sm:rounded-3xl sm:p-4 lg:grid-cols-[1.2fr_0.8fr] lg:gap-4 lg:rounded-[28px] lg:p-6"
           >
-            <div className="mb-3 flex flex-col gap-2 sm:mb-4 sm:gap-3 lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <p className="text-[9px] font-semibold tracking-[0.3em] text-[#8f8078] sm:text-[10px]">MONTH NAVIGATION</p>
-                <div className="mt-2 flex items-center gap-2 sm:gap-3">
-                  <button
-                    type="button"
-                    onClick={() => handleMonthChange(-1)}
-                    className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 text-[#e8ddd4] transition hover:border-[#ffb77b]/40 hover:bg-[#ffb77b]/10 hover:text-[#ffcfaa] sm:h-11 sm:w-11"
-                    aria-label="Previous month"
-                  >
-                    <LeftIcon />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={goToToday}
-                    className="rounded-full border border-[#ffb77b]/30 bg-[#2a1f0e] px-3 py-1.5 text-[9px] font-semibold tracking-[0.28em] text-[#ffcfaa] transition hover:bg-[#ffb77b]/15 sm:px-4 sm:py-2 sm:text-[10px]"
-                  >
-                    TODAY
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleMonthChange(1)}
-                    className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 text-[#e8ddd4] transition hover:border-[#ffb77b]/40 hover:bg-[#ffb77b]/10 hover:text-[#ffcfaa] sm:h-11 sm:w-11"
-                    aria-label="Next month"
-                  >
-                    <RightIcon />
-                  </button>
+            <div className="space-y-2 sm:space-y-3">
+              <p className="text-[9px] font-semibold tracking-[0.32em] text-[#5d3a30] dark:text-[#8f8078] sm:text-[10px]">SCHEDULE_CONTROL</p>
+              <h1 className={`${displayFont.className} text-2xl italic leading-[0.95] text-[#68220D] dark:text-[#f1ddcc] sm:text-4xl lg:text-6xl`}>
+                {formatMonthLabel(viewMonth)}
+              </h1>
+              <p className="max-w-2xl text-xs leading-5 text-[#5d3a30] dark:text-[#b9aca4] sm:text-sm sm:leading-6 lg:text-[15px]">
+                Click any day to pin the composer, or hover a date to preview the add-event modal. New events are stored for this event page in your browser.
+              </p>
+            </div>
+
+            <div className="grid gap-2 grid-cols-3 sm:gap-3 lg:grid-cols-3">
+              <div className="rounded-xl border border-white/10 bg-[#2a1f0e] dark:bg-[#111821] p-2.5 sm:rounded-2xl sm:p-4">
+                <p className="text-[8px] tracking-[0.24em] text-[#8f8078] sm:text-[9px]">MONTH EVENTS</p>
+                <p className="mt-1.5 text-2xl font-semibold text-[#ffcfaa] sm:mt-2 sm:text-3xl">{monthEvents.length.toString()}</p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-[#2a1f0e] dark:bg-[#111821] p-2.5 sm:rounded-2xl sm:p-4">
+                <p className="text-[8px] tracking-[0.24em] text-[#8f8078] sm:text-[9px]">SELECTED DAY</p>
+                <p className="mt-1.5 text-sm font-semibold text-[#e8ddd4] sm:mt-2 sm:text-base">{formatShortDay(selectedDateKey)}</p>
+                <p className="mt-0.5 text-[9px] tracking-[0.16em] text-[#8f8078] sm:mt-1 sm:text-[11px]">{selectedDateEvents.length} event(s)</p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-[#2a1f0e] dark:bg-[#111821] p-2.5 sm:rounded-2xl sm:p-4">
+                <p className="text-[8px] tracking-[0.24em] text-[#8f8078] sm:text-[9px]">STATUS</p>
+                <p className="mt-1.5 text-sm font-semibold text-[#a7f3d0] sm:mt-2 sm:text-base">LIVE</p>
+                <p className="mt-0.5 text-[9px] tracking-[0.16em] text-[#8f8078] sm:mt-1 sm:text-[11px]">Responsive calendar ready</p>
+              </div>
+            </div>
+          </motion.section>
+
+          <section className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_300px] xl:grid-cols-[minmax(0,1fr)_320px]">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.08 }}
+              className="rounded-2xl border border-gray-400 dark:border-white/10 bg-white/95 dark:bg-[#0a0e12]/88 p-3 shadow-[0_8px_24px_rgba(0,0,0,0.12)] dark:shadow-[0_24px_80px_rgba(0,0,0,0.35)] dark:backdrop-blur sm:rounded-3xl sm:p-4 lg:rounded-[28px] lg:p-5"
+            >
+              <div className="mb-3 flex flex-col gap-2 sm:mb-4 sm:gap-3 lg:flex-row lg:items-center lg:justify-between">
+                <div>
+                  <p className="text-[9px] font-semibold tracking-[0.3em] text-[#5d3a30] dark:text-[#8f8078] sm:text-[10px]">MONTH NAVIGATION</p>
+                  <div className="mt-2 flex items-center gap-2 sm:gap-3">
+                    <button
+                      type="button"
+                      onClick={() => handleMonthChange(-1)}
+                      className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 text-[#68220D] dark:text-[#e8ddd4] transition hover:border-[#ffb77b]/40 hover:bg-[#ffb77b]/10 hover:text-[#ffcfaa] sm:h-11 sm:w-11"
+                      aria-label="Previous month"
+                    >
+                      <LeftIcon />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={goToToday}
+                      className="rounded-full border border-[#ffb77b]/30 bg-[#2a1f0e] px-3 py-1.5 text-[9px] font-semibold tracking-[0.28em] text-[#ffcfaa] transition hover:bg-[#ffb77b]/15 sm:px-4 sm:py-2 sm:text-[10px]"
+                    >
+                      TODAY
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleMonthChange(1)}
+                      className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 text-[#68220D] dark:text-[#e8ddd4] transition hover:border-[#ffb77b]/40 hover:bg-[#ffb77b]/10 hover:text-[#ffcfaa] sm:h-11 sm:w-11"
+                      aria-label="Next month"
+                    >
+                      <RightIcon />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 py-1.5 text-[8px] tracking-[0.2em] text-[#a39288] sm:gap-2 sm:px-3 sm:py-2 sm:text-[9px] lg:text-[10px]">
+                  <GridIcon />
+                  7-DAY VIEW
                 </div>
               </div>
 
-              <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 py-1.5 text-[8px] tracking-[0.2em] text-[#a39288] sm:gap-2 sm:px-3 sm:py-2 sm:text-[9px] lg:text-[10px]">
-                <GridIcon />
-                7-DAY VIEW
+              <div className="grid grid-cols-4 gap-1 pb-2 text-center text-[8px] font-semibold tracking-[0.2em] text-[#823a24]  dark:text-[#75665f] sm:grid-cols-6 sm:gap-1.5 sm:pb-2.5 sm:text-[9px] lg:grid-cols-7 lg:gap-2 lg:pb-3 lg:text-[10px]">
+                {["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map((label) => (
+                  <div key={label} className="px-0.5 py-0.5 sm:px-1 lg:px-2">
+                    {label}
+                  </div>
+                ))}
               </div>
-            </div>
 
-            <div className="grid grid-cols-4 gap-1 pb-2 text-center text-[8px] font-semibold tracking-[0.2em] text-[#75665f] sm:grid-cols-6 sm:gap-1.5 sm:pb-2.5 sm:text-[9px] lg:grid-cols-7 lg:gap-2 lg:pb-3 lg:text-[10px]">
-              {["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map((label) => (
-                <div key={label} className="px-0.5 py-0.5 sm:px-1 lg:px-2">
-                  {label}
-                </div>
-              ))}
-            </div>
-
-            <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-6 sm:gap-2 lg:grid-cols-7 lg:gap-2">
-              {calendarDays.map((day) => {
-                const dayEvents = eventsByDate[day.dateKey] ?? [];
-                const isSelected = selectedDateKey === day.dateKey;
-                const isToday = day.dateKey === todayKey;
-                return (
-                  <button
-                    key={day.dateKey}
-                    type="button"
-                    onClick={() => {
-                      if (!day.inCurrentMonth) {
-                        setViewMonth(keyToDate(day.dateKey));
-                      }
+              <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-6 sm:gap-2 lg:grid-cols-7 lg:gap-2">
+                {calendarDays.map((day) => {
+                  const dayEvents = eventsByDate[day.dateKey] ?? [];
+                  const isSelected = selectedDateKey === day.dateKey;
+                  const isToday = day.dateKey === todayKey;
+                  return (
+                    <button
+                      key={day.dateKey}
+                      type="button"
+                      onClick={() => {
+                        if (!day.inCurrentMonth) {
+                          setViewMonth(keyToDate(day.dateKey));
+                        }
                         setSelectedDateKey(day.dateKey);
-                    }}
-                    
-                    className={`group relative min-h-24 rounded-lg border p-1.5 text-left transition sm:min-h-28 sm:rounded-xl sm:p-2 lg:min-h-40 lg:rounded-[22px] lg:p-3 ${
-                      day.inCurrentMonth
-                        ? "border-white/10 bg-white/[0.035] hover:border-[#ffb77b]/30 hover:bg-[#ffb77b]/6"
-                        : "border-white/5 bg-white/1.5 text-[#6e625d]"
-                    } ${isSelected ? "ring-1 ring-[#ffb77b]/60" : ""}`}
-                  >
-                    <div className="flex items-start justify-between gap-1 sm:gap-2">
-                      <div className="flex flex-col items-start gap-0.5 sm:gap-1">
-                        <span
-                          className={`text-[9px] font-semibold tracking-[0.12em] sm:text-xs lg:text-sm ${
-                            day.inCurrentMonth ? "text-[#e8ddd4]" : "text-[#746862]"
-                          } ${isToday ? "text-[#ffcfaa]" : ""}`}
-                        >
-                          {day.day}
-                        </span>
-                        {isToday && (
-                          <span className="rounded-full border border-[#ffb77b]/30 bg-[#2a1f0e] px-1.5 py-0.5 text-[7px] tracking-[0.16em] text-[#ffcfaa] sm:px-2 sm:text-[8px]">
-                            TODAY
+                      }}
+
+                      className={`group relative min-h-24 rounded-lg border p-1.5 text-left transition sm:min-h-28 sm:rounded-xl sm:p-2 lg:min-h-40 lg:rounded-[22px] lg:p-3 ${day.inCurrentMonth
+                        ? "border-gray-200  bg-[#ececec]  hover:border-[#ffb77b]/30 hover:bg-[#fff7f0] dark:border-white/10 dark:bg-[#18181b] dark:hover:bg-[#ffb77b]/6"
+                        : "border-gray-300 bg-[#dcdbdb]  dark:border-white/5 dark:bg-[#1a1a1a] dark:text-[#6e625d]"
+                        } ${isSelected ? "ring-1 ring-[#68220D]/80 dark:ring-[#ffb77b]/60" : ""}`}
+                    >
+                      <div className="flex items-start justify-between gap-1 sm:gap-2">
+                        <div className="flex flex-col items-start gap-0.5 sm:gap-1">
+                          <span
+                            className={`text-[9px] font-semibold tracking-[0.12em] sm:text-xs lg:text-sm ${day.inCurrentMonth ? "text-[#a2a2a0]" : "text-[#746862]"
+                              } ${isToday ? "text-[#392506] dark:text-[#ffcfaa]" : ""}`}
+                          >
+                            {day.day}
+                          </span>
+                          {isToday && (
+                            <span className="rounded-full border border-[#ffb77b]/30 bg-[#2a1f0e] px-1.5 py-0.5 text-[7px] tracking-[0.16em] text-[#ffcfaa] sm:px-2 sm:text-[8px]">
+                              TODAY
+                            </span>
+                          )}
+                        </div>
+
+                        {dayEvents.length > 0 && (
+                          <span className="rounded-full border border-white/10 bg-black/20 px-1.5 py-0.5 text-[7px] tracking-[0.14em] text-[#a39288] sm:px-2 sm:text-[8px]">
+                            {dayEvents.length}
                           </span>
                         )}
                       </div>
 
-                      {dayEvents.length > 0 && (
-                        <span className="rounded-full border border-white/10 bg-black/20 px-1.5 py-0.5 text-[7px] tracking-[0.14em] text-[#a39288] sm:px-2 sm:text-[8px]">
-                          {dayEvents.length}
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="mt-1.5 space-y-1 sm:mt-2 sm:space-y-1.5 lg:mt-3">
-                      {dayEvents.slice(0, 2).map((event) => (
-                        <div
-                          key={event.id}
-                          className="hidden rounded-lg border border-white/10 bg-[#111821] px-1.5 py-1 text-[8px] leading-3 text-[#efe3d9] shadow-[0_8px_20px_rgba(0,0,0,0.2)] sm:block sm:text-[9px] sm:leading-4 lg:rounded-xl lg:px-2 lg:py-1.5 lg:text-[10px]"
-                        >
-                          <div className="flex items-center gap-1">
-                            <span className="h-1 w-1 shrink-0 rounded-full sm:h-1.5 sm:w-1.5" style={{ backgroundColor: event.color }} />
-                            <span className="truncate font-semibold">{event.title}</span>
+                      <div className="mt-1.5 space-y-1 sm:mt-2 sm:space-y-1.5 lg:mt-3">
+                        {dayEvents.slice(0, 2).map((event) => (
+                          <div
+                            key={event.id}
+                            className="hidden rounded-lg border border-white/10 bg-[#111821] px-1.5 py-1 text-[8px] leading-3 text-[#efe3d9] shadow-[0_8px_20px_rgba(0,0,0,0.2)] sm:block sm:text-[9px] sm:leading-4 lg:rounded-xl lg:px-2 lg:py-1.5 lg:text-[10px]"
+                          >
+                            <div className="flex items-center gap-1">
+                              <span className="h-1 w-1 shrink-0 rounded-full sm:h-1.5 sm:w-1.5" style={{ backgroundColor: event.color }} />
+                              <span className="truncate font-semibold">{event.title}</span>
+                            </div>
+                            <div className="mt-0.5 text-[7px] tracking-[0.16em] text-[#9f8e86] sm:text-[8px]">{event.start_time}</div>
                           </div>
-                          <div className="mt-0.5 text-[7px] tracking-[0.16em] text-[#9f8e86] sm:text-[8px]">{event.start_time}</div>
-                        </div>
-                      ))}
-                      {dayEvents.length > 2 && (
-                        <div className="text-[7px] tracking-[0.16em] text-[#8f8078] sm:text-[8px] sm:tracking-[0.18em]">+{dayEvents.length - 2} MORE</div>
-                      )}
-                    </div>
-
-                    <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent opacity-0 transition group-hover:opacity-100" />
-                    {day.inCurrentMonth && (
-                      <div className="absolute left-2 top-2 h-2 w-2 rounded-full bg-[#ffb77b] opacity-0 shadow-[0_0_18px_rgba(255,183,123,0.9)] transition group-hover:opacity-100" />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          </motion.div>
-
-          <motion.aside
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.14 }}
-            className="rounded-2xl border border-white/10 bg-[#0b1016]/88 p-3 shadow-[0_24px_80px_rgba(0,0,0,0.3)] backdrop-blur sm:rounded-3xl sm:p-4 lg:rounded-[28px] lg:p-5"
-          >
-            <div className="mb-3 flex items-start justify-between gap-2 sm:mb-4 sm:gap-3">
-              <div>
-                <p className="text-[9px] font-semibold tracking-[0.28em] text-[#8f8078] sm:text-[10px]">DAY AGENDA</p>
-                <h2 className={`${displayFont.className} mt-1.5 text-xl italic text-[#f1ddcc] sm:mt-2 sm:text-3xl`}>{formatShortDay(selectedDateKey)}</h2>
-              </div>
-              <button
-                type="button"
-                onClick={handleOpenComposerForSelectedDate}
-                className="flex items-center gap-1 rounded-full border border-[#ffb77b]/30 bg-[#2a1f0e] px-2.5 py-1.5 text-[8px] font-semibold tracking-[0.2em] text-[#ffcfaa] transition hover:bg-[#ffb77b]/15 sm:px-3 sm:py-2 sm:text-[9px]"
-                aria-label="Add event for selected date"
-                title="Add event"
-              >
-                <PlusIcon />
-                ADD EVENT
-              </button>
-            </div>
-
-            <div className="space-y-2 sm:space-y-3">
-              {selectedDateEvents.length === 0 ? (
-                <div className="rounded-xl border border-dashed border-white/10 bg-white/2.5 px-3 py-4 text-xs leading-5 text-[#a39288] sm:rounded-2xl sm:px-4 sm:py-6 sm:text-sm sm:leading-6">
-                  No events are scheduled for {formatShortDay(selectedDateKey)} yet. Use ADD EVENT to create one.
-                </div>
-              ) : (
-                selectedDateEvents.map((event) => (
-                  <div key={event.id} className="rounded-xl border border-white/10 bg-white/[0.035] p-2.5 sm:rounded-2xl sm:p-4">
-                    <div className="flex items-start justify-between gap-2 sm:gap-3">
-                      <div className="min-w-0">
-                        <div className="flex items-center gap-1.5 sm:gap-2">
-                          <span className="h-2 w-2 shrink-0 rounded-full sm:h-2.5 sm:w-2.5" style={{ backgroundColor: event.color }} />
-                          <p className="truncate text-xs font-semibold text-[#f1ddcc] sm:text-sm">{event.title}</p>
-                        </div>
-                        <p className="mt-1.5 text-[9px] tracking-[0.22em] text-[#9f8e86] sm:mt-2 sm:text-[10px] sm:tracking-[0.24em]">{event.start_time} - {event.end_time}</p>
+                        ))}
+                        {dayEvents.length > 2 && (
+                          <div className="text-[7px] tracking-[0.16em] text-[#8f8078] sm:text-[8px] sm:tracking-[0.18em]">+{dayEvents.length - 2} MORE</div>
+                        )}
                       </div>
-                      <button
-                        type="button"
-                        onClick={() => handleDeleteEvent(event.id)}
-                        disabled={isSaving}
-                        className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-[#d1c4bb] transition hover:border-[#ff7b7b]/40 hover:bg-[#2a1111] hover:text-[#ff9d9d] disabled:cursor-not-allowed disabled:opacity-50"
-                        aria-label={`Delete ${event.title}`}
-                        title="Delete event"
-                      >
-                        <TrashIcon />
-                      </button>
-                    </div>
-                    {event.note && <p className="mt-2 text-xs leading-5 text-[#c7bab2] sm:mt-3 sm:text-sm sm:leading-6">{event.note}</p>}
-                  </div>
-                ))
-              )}
-            </div>
 
-            <div className="mt-4 rounded-2xl border border-white/10 bg-[#111821] p-3 sm:mt-5 sm:rounded-3xl sm:p-4">
-              <div className="flex items-center gap-1.5 text-[9px] font-semibold tracking-[0.26em] text-[#8f8078] sm:gap-2 sm:text-[10px]">
-                <CalendarIcon />
-                QUICK ADD
+                      <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent opacity-0 transition group-hover:opacity-100" />
+                      {day.inCurrentMonth && (
+                        <div className="absolute left-2 top-2 h-2 w-2 rounded-full bg-[#ffb77b] opacity-0 shadow-[0_0_18px_rgba(255,183,123,0.9)] transition group-hover:opacity-100" />
+                      )}
+                    </button>
+                  );
+                })}
               </div>
-              <p className="mt-2 text-xs leading-5 text-[#b9aca4] sm:text-sm sm:leading-6">
-                Choose a day, set a time, and save the event without leaving the calendar.
-              </p>
-            </div>
-          </motion.aside>
-        </section>
+            </motion.div>
 
-      {composer && (
-        <div
-          className="fixed inset-0 z-50 bg-black/45 px-3 py-4 backdrop-blur-sm sm:px-4 sm:py-6 lg:px-6 lg:py-10"
-          onClick={() => setComposer(null)}
-          onMouseMove={scheduleHoverClose}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 18, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.22 }}
-            className="mx-auto flex h-full w-full max-w-2xl items-center justify-center"
-            onClick={(event) => event.stopPropagation()}
-            onMouseEnter={clearTimers}
-            onMouseLeave={scheduleModalClose}
-          >
-            <div className="w-full rounded-2xl border border-white/10 bg-[#0a0f15] p-3 shadow-[0_32px_100px_rgba(0,0,0,0.45)] sm:rounded-3xl sm:p-4 lg:rounded-[28px] lg:p-6">
-              <div className="mb-3 flex items-start justify-between gap-3 sm:mb-4 sm:gap-4 lg:mb-5">
+            <motion.aside
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.14 }}
+              className="rounded-2xl border border-gray-400 dark:border-white/10 bg-white/95 dark:bg-[#0b1016]/88 p-3 shadow-[0_24px_80px_rgba(0,0,0,0.3)] backdrop-blur sm:rounded-3xl sm:p-4 lg:rounded-[28px] lg:p-5"
+            >
+              <div className="mb-3 flex items-start justify-between gap-2 sm:mb-4 sm:gap-3">
                 <div>
-                  <p className="text-[9px] font-semibold tracking-[0.3em] text-[#8f8078] sm:text-[10px]">ADD EVENT</p>
-                  <h3 className={`${displayFont.className} mt-1.5 text-xl italic text-[#f1ddcc] sm:mt-2 sm:text-3xl lg:mt-2 lg:text-3xl`}>{composerTitle}</h3>
+                  <p className="text-[9px] font-semibold tracking-[0.28em] text-[#5d3a30] dark:text-[#8f8078] sm:text-[10px]">DAY AGENDA</p>
+                  <h2 className={`${displayFont.className} mt-1.5 text-xl italic text-[#68220D]  dark:text-[#f1ddcc] sm:mt-2 sm:text-3xl`}>{formatShortDay(selectedDateKey)}</h2>
                 </div>
                 <button
                   type="button"
-                  onClick={() => setComposer(null)}
-                  className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-[#e8ddd4] transition hover:border-[#ffb77b]/30 hover:bg-[#ffb77b]/10 hover:text-[#ffcfaa] sm:h-10 sm:w-10"
-                  aria-label="Close composer"
+                  onClick={handleOpenComposerForSelectedDate}
+                  className="flex items-center gap-1 rounded-full border border-[#ffb77b]/30 bg-[#2a1f0e] px-2.5 py-1.5 text-[8px] font-semibold tracking-[0.2em] text-[#ffcfaa] transition hover:bg-[#ffb77b]/15 sm:px-3 sm:py-2 sm:text-[9px]"
+                  aria-label="Add event for selected date"
+                  title="Add event"
                 >
-                  <CloseIcon />
+                  <PlusIcon />
+                  ADD EVENT
                 </button>
               </div>
 
-              <div className="grid gap-3 sm:gap-4 md:grid-cols-[1fr_150px] lg:grid-cols-[1fr_170px]">
-                <div className="space-y-3 sm:space-y-4">
-                  <label className="block">
-                    <span className="mb-1.5 block text-[9px] font-semibold tracking-[0.26em] text-[#8f8078] sm:mb-2 sm:text-[10px] sm:tracking-[0.28em]">EVENT TITLE</span>
-                    <input
-                      type="text"
-                      value={draftTitle}
-                      onChange={(event) => setDraftTitle(event.target.value)}
-                      placeholder="Board review, dinner, rehearsal..."
-                      disabled={isSaving}
-                      className="w-full rounded-lg border border-white/10 bg-[#0f151d] px-3 py-2.5 text-xs text-[#efe3d9] outline-none transition placeholder:text-[#6f645f] focus:border-[#ffb77b]/40 disabled:opacity-50 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm lg:rounded-2xl"
-                    />
-                  </label>
-
-                  <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
-                    <label className="block">
-                      <span className="mb-1.5 block text-[9px] font-semibold tracking-[0.26em] text-[#8f8078] sm:mb-2 sm:text-[10px] sm:tracking-[0.28em]">START TIME</span>
-                      <input
-                        type="time"
-                        value={draftStartTime}
-                        onChange={(event) => setDraftStartTime(event.target.value)}
-                        disabled={isSaving}
-                        className="w-full rounded-lg border border-white/10 bg-[#0f151d] px-3 py-2.5 text-xs text-[#efe3d9] outline-none transition focus:border-[#ffb77b]/40 disabled:opacity-50 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm lg:rounded-2xl"
-                      />
-                    </label>
-                    <label className="block">
-                      <span className="mb-1.5 block text-[9px] font-semibold tracking-[0.26em] text-[#8f8078] sm:mb-2 sm:text-[10px] sm:tracking-[0.28em]">END TIME</span>
-                      <input
-                        type="time"
-                        value={draftEndTime}
-                        onChange={(event) => setDraftEndTime(event.target.value)}
-                        disabled={isSaving}
-                        className="w-full rounded-lg border border-white/10 bg-[#0f151d] px-3 py-2.5 text-xs text-[#efe3d9] outline-none transition focus:border-[#ffb77b]/40 disabled:opacity-50 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm lg:rounded-2xl"
-                      />
-                    </label>
+              <div className="space-y-2 sm:space-y-3">
+                {selectedDateEvents.length === 0 ? (
+                  <div className="rounded-xl border border-dashed border-white/10 bg-white/2.5 px-3 py-4 text-xs leading-5 text-[#5d3a30] dark:text-[#a39288] sm:rounded-2xl sm:px-4 sm:py-6 sm:text-sm sm:leading-6">
+                    No events are scheduled for {formatShortDay(selectedDateKey)} yet. Use ADD EVENT to create one.
                   </div>
-
-                  <div className="rounded-lg border border-white/10 bg-[#0f151d] px-3 py-2.5 sm:rounded-xl sm:px-4 sm:py-3 lg:rounded-2xl">
-                    <p className="text-[9px] font-semibold tracking-[0.26em] text-[#8f8078] sm:text-[10px] sm:tracking-[0.28em]">DATE</p>
-                    <p className="mt-1 text-xs font-semibold text-[#efe3d9] sm:mt-1.5 sm:text-sm">{formatDayLabel(composer.dateKey)}</p>
-                  </div>
-
-                  <label className="block">
-                    <span className="mb-1.5 block text-[9px] font-semibold tracking-[0.26em] text-[#8f8078] sm:mb-2 sm:text-[10px] sm:tracking-[0.28em]">NOTES</span>
-                    <textarea
-                      value={draftNote}
-                      onChange={(event) => setDraftNote(event.target.value)}
-                      rows={3}
-                      placeholder="Optional details for this event"
-                      disabled={isSaving}
-                      className="w-full rounded-lg border border-white/10 bg-[#0f151d] px-3 py-2.5 text-xs leading-5 text-[#efe3d9] outline-none transition placeholder:text-[#6f645f] focus:border-[#ffb77b]/40 disabled:opacity-50 sm:rows-4 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm sm:leading-6 lg:rounded-2xl"
-                    />
-                  </label>
-                </div>
-
-                <div className="flex flex-col justify-between gap-3 rounded-2xl border border-white/10 bg-white/3 p-3 sm:gap-4 sm:rounded-3xl sm:p-4 lg:rounded-3xl">
-                  <div>
-                    <p className="text-[9px] font-semibold tracking-[0.26em] text-[#8f8078] sm:text-[10px] sm:tracking-[0.28em]">PREVIEW</p>
-                    <div className="mt-2 rounded-lg border border-white/10 bg-[#111821] p-2.5 sm:mt-3 sm:rounded-xl sm:p-4 lg:rounded-2xl">
-                      <p className="text-xs font-semibold text-[#f1ddcc] sm:text-sm">{draftTitle.trim() || "Untitled event"}</p>
-                      <p className="mt-1 text-[8px] tracking-[0.22em] text-[#9f8e86] sm:mt-1.5 sm:text-[10px] sm:tracking-[0.24em]">{draftStartTime || "--:--"} - {draftEndTime || "--:--"}</p>
-                      <p className="mt-2 text-xs leading-5 text-[#b9aca4] sm:mt-2.5 sm:text-sm sm:leading-6">
-                        {draftNote.trim() || "Add a note to keep this event context visible later."}
-                      </p>
+                ) : (
+                  selectedDateEvents.map((event) => (
+                    <div key={event.id} className="rounded-xl border border-white/10 bg-white/[0.035] p-2.5 sm:rounded-2xl sm:p-4">
+                      <div className="flex items-start justify-between gap-2 sm:gap-3">
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-1.5 sm:gap-2">
+                            <span className="h-2 w-2 shrink-0 rounded-full sm:h-2.5 sm:w-2.5" style={{ backgroundColor: event.color }} />
+                            <p className="truncate text-xs font-semibold text-[#f1ddcc] sm:text-sm">{event.title}</p>
+                          </div>
+                          <p className="mt-1.5 text-[9px] tracking-[0.22em] text-[#9f8e86] sm:mt-2 sm:text-[10px] sm:tracking-[0.24em]">{event.start_time} - {event.end_time}</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteEvent(event.id)}
+                          disabled={isSaving}
+                          className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-[#d1c4bb] transition hover:border-[#ff7b7b]/40 hover:bg-[#2a1111] hover:text-[#ff9d9d] disabled:cursor-not-allowed disabled:opacity-50"
+                          aria-label={`Delete ${event.title}`}
+                          title="Delete event"
+                        >
+                          <TrashIcon />
+                        </button>
+                      </div>
+                      {event.note && <p className="mt-2 text-xs leading-5 text-[#c7bab2] sm:mt-3 sm:text-sm sm:leading-6">{event.note}</p>}
                     </div>
-                  </div>
+                  ))
+                )}
+              </div>
 
-                  <div className="flex flex-col gap-2 sm:gap-3">
-                    <button
-                      type="button"
-                      onClick={handleAddEvent}
-                      disabled={isSaving}
-                      className="flex items-center justify-center gap-1.5 rounded-lg bg-[#ffb77b] px-3 py-2.5 text-[10px] font-bold tracking-[0.18em] text-[#2e1500] transition hover:bg-[#ffc994] disabled:opacity-50 disabled:cursor-not-allowed sm:rounded-xl sm:px-4 sm:py-3 sm:text-xs sm:gap-2 lg:rounded-2xl"
-                    >
-                      <PlusIcon />
-                      {isSaving ? "SAVING..." : "SAVE EVENT"}
-                    </button>
+              <div className="mt-4 rounded-2xl border border-white/10 bg-[#2a1f0e] dark:bg-[#111821] p-3 sm:mt-5 sm:rounded-3xl sm:p-4">
+                <div className="flex items-center gap-1.5 text-[9px] font-semibold tracking-[0.26em] text-[#8f8078] sm:gap-2 sm:text-[10px]">
+                  <CalendarIcon />
+                  QUICK ADD
+                </div>
+                <p className="mt-2 text-xs leading-5 text-[#b9aca4] sm:text-sm sm:leading-6">
+                  Choose a day, set a time, and save the event without leaving the calendar.
+                </p>
+              </div>
+            </motion.aside>
+          </section>
+
+          {composer && (
+            <div
+              className="fixed inset-0 z-50 bg-black/45 px-3 py-4 backdrop-blur-sm sm:px-4 sm:py-6 lg:px-6 lg:py-10"
+              onClick={() => setComposer(null)}
+              onMouseMove={scheduleHoverClose}
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 18, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.22 }}
+                className="mx-auto flex h-full w-full max-w-2xl items-center justify-center"
+                onClick={(event) => event.stopPropagation()}
+                onMouseEnter={clearTimers}
+                onMouseLeave={scheduleModalClose}
+              >
+                <div className="w-full rounded-2xl border border-white/10 bg-[#0a0f15] p-3 shadow-[0_32px_100px_rgba(0,0,0,0.45)] sm:rounded-3xl sm:p-4 lg:rounded-[28px] lg:p-6">
+                  <div className="mb-3 flex items-start justify-between gap-3 sm:mb-4 sm:gap-4 lg:mb-5">
+                    <div>
+                      <p className="text-[9px] font-semibold tracking-[0.3em] text-[#8f8078] sm:text-[10px]">ADD EVENT</p>
+                      <h3 className={`${displayFont.className} mt-1.5 text-xl italic text-[#f1ddcc] sm:mt-2 sm:text-3xl lg:mt-2 lg:text-3xl`}>{composerTitle}</h3>
+                    </div>
                     <button
                       type="button"
                       onClick={() => setComposer(null)}
-                      disabled={isSaving}
-                      className="rounded-lg border border-white/10 bg-white/3 px-3 py-2.5 text-[10px] font-semibold tracking-[0.18em] text-[#d1c4bb] transition hover:border-[#ffb77b]/30 hover:text-[#ffcfaa] disabled:opacity-50 sm:rounded-xl sm:px-4 sm:py-3 sm:text-xs lg:rounded-2xl"
+                      className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-[#e8ddd4] transition hover:border-[#ffb77b]/30 hover:bg-[#ffb77b]/10 hover:text-[#ffcfaa] sm:h-10 sm:w-10"
+                      aria-label="Close composer"
                     >
-                      CANCEL
+                      <CloseIcon />
                     </button>
                   </div>
-                </div>
-              </div>
 
-              {message && <p className="mt-3 text-xs text-[#a7f3d0] sm:mt-4 sm:text-sm">{message}</p>}
+                  <div className="grid gap-3 sm:gap-4 md:grid-cols-[1fr_150px] lg:grid-cols-[1fr_170px]">
+                    <div className="space-y-3 sm:space-y-4">
+                      <label className="block">
+                        <span className="mb-1.5 block text-[9px] font-semibold tracking-[0.26em] text-[#8f8078] sm:mb-2 sm:text-[10px] sm:tracking-[0.28em]">EVENT TITLE</span>
+                        <input
+                          type="text"
+                          value={draftTitle}
+                          onChange={(event) => setDraftTitle(event.target.value)}
+                          placeholder="Board review, dinner, rehearsal..."
+                          disabled={isSaving}
+                          className="w-full rounded-lg border border-white/10 bg-[#0f151d] px-3 py-2.5 text-xs text-[#efe3d9] outline-none transition placeholder:text-[#6f645f] focus:border-[#ffb77b]/40 disabled:opacity-50 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm lg:rounded-2xl"
+                        />
+                      </label>
+
+                      <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
+                        <label className="block">
+                          <span className="mb-1.5 block text-[9px] font-semibold tracking-[0.26em] text-[#8f8078] sm:mb-2 sm:text-[10px] sm:tracking-[0.28em]">START TIME</span>
+                          <input
+                            type="time"
+                            value={draftStartTime}
+                            onChange={(event) => setDraftStartTime(event.target.value)}
+                            disabled={isSaving}
+                            className="w-full rounded-lg border border-white/10 bg-[#0f151d] px-3 py-2.5 text-xs text-[#efe3d9] outline-none transition focus:border-[#ffb77b]/40 disabled:opacity-50 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm lg:rounded-2xl"
+                          />
+                        </label>
+                        <label className="block">
+                          <span className="mb-1.5 block text-[9px] font-semibold tracking-[0.26em] text-[#8f8078] sm:mb-2 sm:text-[10px] sm:tracking-[0.28em]">END TIME</span>
+                          <input
+                            type="time"
+                            value={draftEndTime}
+                            onChange={(event) => setDraftEndTime(event.target.value)}
+                            disabled={isSaving}
+                            className="w-full rounded-lg border border-white/10 bg-[#0f151d] px-3 py-2.5 text-xs text-[#efe3d9] outline-none transition focus:border-[#ffb77b]/40 disabled:opacity-50 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm lg:rounded-2xl"
+                          />
+                        </label>
+                      </div>
+
+                      <div className="rounded-lg border border-white/10 bg-[#0f151d] px-3 py-2.5 sm:rounded-xl sm:px-4 sm:py-3 lg:rounded-2xl">
+                        <p className="text-[9px] font-semibold tracking-[0.26em] text-[#8f8078] sm:text-[10px] sm:tracking-[0.28em]">DATE</p>
+                        <p className="mt-1 text-xs font-semibold text-[#efe3d9] sm:mt-1.5 sm:text-sm">{formatDayLabel(composer.dateKey)}</p>
+                      </div>
+
+                      <label className="block">
+                        <span className="mb-1.5 block text-[9px] font-semibold tracking-[0.26em] text-[#8f8078] sm:mb-2 sm:text-[10px] sm:tracking-[0.28em]">NOTES</span>
+                        <textarea
+                          value={draftNote}
+                          onChange={(event) => setDraftNote(event.target.value)}
+                          rows={3}
+                          placeholder="Optional details for this event"
+                          disabled={isSaving}
+                          className="w-full rounded-lg border border-white/10 bg-[#0f151d] px-3 py-2.5 text-xs leading-5 text-[#efe3d9] outline-none transition placeholder:text-[#6f645f] focus:border-[#ffb77b]/40 disabled:opacity-50 sm:rows-4 sm:rounded-xl sm:px-4 sm:py-3 sm:text-sm sm:leading-6 lg:rounded-2xl"
+                        />
+                      </label>
+                    </div>
+
+                    <div className="flex flex-col justify-between gap-3 rounded-2xl border border-white/10 bg-white/3 p-3 sm:gap-4 sm:rounded-3xl sm:p-4 lg:rounded-3xl">
+                      <div>
+                        <p className="text-[9px] font-semibold tracking-[0.26em] text-[#8f8078] sm:text-[10px] sm:tracking-[0.28em]">PREVIEW</p>
+                        <div className="mt-2 rounded-lg border border-white/10 bg-[#111821] p-2.5 sm:mt-3 sm:rounded-xl sm:p-4 lg:rounded-2xl">
+                          <p className="text-xs font-semibold text-[#f1ddcc] sm:text-sm">{draftTitle.trim() || "Untitled event"}</p>
+                          <p className="mt-1 text-[8px] tracking-[0.22em] text-[#9f8e86] sm:mt-1.5 sm:text-[10px] sm:tracking-[0.24em]">{draftStartTime || "--:--"} - {draftEndTime || "--:--"}</p>
+                          <p className="mt-2 text-xs leading-5 text-[#b9aca4] sm:mt-2.5 sm:text-sm sm:leading-6">
+                            {draftNote.trim() || "Add a note to keep this event context visible later."}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col gap-2 sm:gap-3">
+                        <button
+                          type="button"
+                          onClick={handleAddEvent}
+                          disabled={isSaving}
+                          className="flex items-center justify-center gap-1.5 rounded-lg bg-[#ffb77b] px-3 py-2.5 text-[10px] font-bold tracking-[0.18em] text-[#2e1500] transition hover:bg-[#ffc994] disabled:opacity-50 disabled:cursor-not-allowed sm:rounded-xl sm:px-4 sm:py-3 sm:text-xs sm:gap-2 lg:rounded-2xl"
+                        >
+                          <PlusIcon />
+                          {isSaving ? "SAVING..." : "SAVE EVENT"}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setComposer(null)}
+                          disabled={isSaving}
+                          className="rounded-lg border border-white/10 bg-white/3 px-3 py-2.5 text-[10px] font-semibold tracking-[0.18em] text-[#d1c4bb] transition hover:border-[#ffb77b]/30 hover:text-[#ffcfaa] disabled:opacity-50 sm:rounded-xl sm:px-4 sm:py-3 sm:text-xs lg:rounded-2xl"
+                        >
+                          CANCEL
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {message && <p className="mt-3 text-xs text-[#a7f3d0] sm:mt-4 sm:text-sm">{message}</p>}
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
+          )}
         </div>
-      )}
-      </div>
       )}
     </main>
   );

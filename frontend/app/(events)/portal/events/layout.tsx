@@ -188,13 +188,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
               >
                 <BellIcon />
               </button>
-              <button
-                type="button"
-                aria-label="Settings"
-                className="grid h-9 w-9 place-items-center rounded-lg text-[#68220D] dark:text-[#9f8e86] hover:opacity-70 transition"
-              >
-                <ThemeToggle />
-              </button>
+              <ThemeToggle />
               <button
                 type="button"
                 onClick={handleLogout}

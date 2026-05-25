@@ -51,6 +51,10 @@ return new class extends Migration
 
     private function hasIndex(string $indexName): bool
     {
+        if (DB::getDriverName() === 'sqlite') {
+            return count(DB::select("SELECT name FROM sqlite_master WHERE type='index' AND name=?", [$indexName])) > 0;
+        }
+
         return DB::table('pg_indexes')
             ->where('schemaname', DB::raw('current_schema()'))
             ->where('indexname', $indexName)

@@ -133,10 +133,10 @@ export default function GuestUploadsManager({ eventId }: GuestUploadsProps) {
       {/* Header and Generate Button */}
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h2 className={`${displayFont.className} text-2xl italic text-[#e6dad3]`}>
+          <h2 className={`${displayFont.className} text-2xl italic text-[#68220D] dark:text-[#e6dad3]`}>
             Guest Photo Uploads
           </h2>
-          <p className="mt-1 text-xs text-[#8f8078] tracking-[0.16em]">
+          <p className="mt-1 text-xs text-[#3d261f]  dark:text-[#8f8078] tracking-[0.16em]">
             {uploads.length} guest(s) with upload access
           </p>
         </div>
@@ -150,7 +150,7 @@ export default function GuestUploadsManager({ eventId }: GuestUploadsProps) {
 
       {/* Messages */}
       {error && (
-        <div className="rounded-md border border-[#ff9e9e]/30 bg-[#ff9e9e]/10 p-3 text-xs text-[#ff9e9e]">
+        <div className="rounded-md border border-[#ff9e9e]/30 bg-[#341b03] dark:bg-[#ff9e9e]/10 p-3 text-xs text-[#ff9e9e]">
           {error}
         </div>
       )}
@@ -163,7 +163,7 @@ export default function GuestUploadsManager({ eventId }: GuestUploadsProps) {
 
       {/* Uploads List */}
       {uploads.length === 0 ? (
-        <div className="rounded-lg border border-[#3c332d] bg-[#0f1319] px-6 py-12 text-center">
+        <div className="rounded-lg border border-[#3c332d] bg-[#2c1703] dark:bg-[#0f1319] px-6 py-12 text-center">
           <p className="text-[#8f8078]">No guest uploads yet. Generate a share link to get started.</p>
         </div>
       ) : (

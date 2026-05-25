@@ -15,9 +15,9 @@ const uiFont = Space_Grotesk({
 });
 
 type LoginPageProps = {
-  searchParams?: {
+  searchParams: Promise<{
     next?: string;
-  };
+  }>;
 };
 
 function sanitizeRedirect(next: string | undefined): string {
@@ -28,8 +28,9 @@ function sanitizeRedirect(next: string | undefined): string {
   return next;
 }
 
-export default function LoginPage({ searchParams }: LoginPageProps) {
-  const redirectTo = sanitizeRedirect(searchParams?.next);
+export default async function LoginPage({ searchParams }: LoginPageProps) {
+  const resolvedParams = await searchParams;
+  const redirectTo = sanitizeRedirect(resolvedParams?.next);
 
   return (
     <main className={`${uiFont.className} min-h-screen bg-black text-[#e5e2e3]`}>
