@@ -182,7 +182,7 @@ function StatCard({
       transition={{ duration: 0.4, delay }}
       className="flex flex-col gap-1"
     >
-      <p className="text-[9px] tracking-[0.22em] text-[#8f8078]">{label}</p>
+      <p className="text-[9px] tracking-[0.22em] text-[#5d3a30] dark:text-[#8f8078]">{label}</p>
       <p className={`text-4xl font-semibold leading-none`} style={{ color: accent }}>{value}</p>
       <div className="mt-1.5 h-0.5 w-8 rounded-full" style={{ background: accent }} />
     </motion.div>
@@ -412,38 +412,38 @@ export default function GuestsPage() {
     });
 
   return (
-    <main className={`${uiFont.className} min-h-screen bg-[#090b10] text-[#e5e2e3] flex flex-col`}>
+    <main className={`${uiFont.className} min-h-screen bg-white/95 dark:bg-[#090b10] text-[#e5e2e3] flex flex-col`}>
 
       {/* ── TOP PANEL ─────────────────────────────────────────────────────── */}
       <motion.div
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="grid grid-cols-1 border-b border-[#2b2520]/70 lg:grid-cols-2"
+        className="grid grid-cols-1 border-b border-gray-400/70 dark:border-[#2b2520]/70 lg:grid-cols-2"
       >
         {/* LEFT: Command Interface */}
-        <div className="border-b border-[#2b2520]/70 px-5 py-6 sm:px-8 lg:border-b-0 lg:border-r lg:py-8">
-          <p className="text-[9px] tracking-[0.3em] text-[#8f8078] mb-2">COMMAND_INTERFACE</p>
-          <h1 className={`${displayFont.className} text-4xl italic font-semibold text-[#e6dad3] leading-[1.05] mb-7`}>
+        <div className="border-b border-gray-400/70 dark:border-[#2b2520]/70 px-5 py-6 sm:px-8 lg:border-b-0 lg:border-r lg:py-8">
+          <p className="text-[9px] tracking-[0.3em] text-[#5d3a30] dark:text-[#8f8078] mb-2">COMMAND_INTERFACE</p>
+          <h1 className={`${displayFont.className} text-4xl italic font-semibold text-[#68220D] dark:text-[#e6dad3] leading-[1.05] mb-7`}>
             Invitation Control Center
           </h1>
 
           {/* Name, Email, and Message input */}
           <div className="mb-5">
-            <p className="text-[9px] tracking-[0.24em] text-[#8f8078] mb-2">GUEST NAME</p>
+            <p className="text-[9px] tracking-[0.24em] text-[#5d3a30] dark:text-[#8f8078] mb-2">GUEST NAME</p>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full mb-3 bg-[#0d1118] border border-[#3b3430]/80 rounded-sm px-4 py-3 text-sm tracking-widest text-[#dac7bd] placeholder:text-[#5a4e48] focus:outline-none focus:border-[#ffb77b]/60 transition"
+              className="w-full mb-3 bg-[#2a1f0e] dark:bg-[#0d1118] border border-[#3b3430]/80 rounded-sm px-4 py-3 text-sm tracking-widest text-[#dac7bd] placeholder:text-[#5a4e48] focus:outline-none focus:border-[#ffb77b]/60 transition"
               placeholder="Full Name"
             />
-            <p className="text-[9px] tracking-[0.24em] text-[#8f8078] mb-2">TARGET EMAIL ADDRESS</p>
+            <p className="text-[9px] tracking-[0.24em] text-[#5d3a30] dark:text-[#8f8078] mb-2">TARGET EMAIL ADDRESS</p>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full mb-3 bg-[#0d1118] border border-[#3b3430]/80 rounded-sm px-4 py-3 text-sm tracking-widest text-[#dac7bd] placeholder:text-[#5a4e48] focus:outline-none focus:border-[#ffb77b]/60 transition"
+              className="w-full mb-3 bg-[#2a1f0e] dark:bg-[#0d1118] border border-[#3b3430]/80 rounded-sm px-4 py-3 text-sm tracking-widest text-[#dac7bd] placeholder:text-[#5a4e48] focus:outline-none focus:border-[#ffb77b]/60 transition"
               placeholder="guest@email.com"
             />
             <label className="mb-3 flex items-center gap-2 text-[10px] font-semibold tracking-[0.18em] text-[#9f8e86]">
@@ -474,7 +474,7 @@ export default function GuestsPage() {
                         handleAddAdditionalName();
                       }
                     }}
-                    className="min-w-0 flex-1 bg-[#0d1118] border border-[#3b3430]/80 rounded-sm px-4 py-2.5 text-sm tracking-widest text-[#dac7bd] placeholder:text-[#5a4e48] focus:outline-none focus:border-[#ffb77b]/60 transition"
+                    className="min-w-0 flex-1 bg-[#2a1f0e] dark:bg-[#0d1118] border border-[#3b3430]/80 rounded-sm px-4 py-2.5 text-sm tracking-widest text-[#dac7bd] placeholder:text-[#5a4e48] focus:outline-none focus:border-[#ffb77b]/60 transition"
                     placeholder="Additional person name"
                   />
                   <button
@@ -503,11 +503,11 @@ export default function GuestsPage() {
                 )}
               </div>
             )}
-            <p className="text-[9px] tracking-[0.24em] text-[#8f8078] mb-2">OPTIONAL MESSAGE</p>
+            <p className="text-[9px] tracking-[0.24em] text-[#5d3a30] dark:text-[#8f8078] mb-2">OPTIONAL MESSAGE</p>
             <textarea
               value={customMessage}
               onChange={(e) => setCustomMessage(e.target.value)}
-              className="w-full bg-[#0d1118] border border-[#3b3430]/80 rounded-sm px-4 py-3 text-sm tracking-widest text-[#dac7bd] placeholder:text-[#5a4e48] focus:outline-none focus:border-[#ffb77b]/60 transition"
+              className="w-full bg-[#2a1f0e] dark:bg-[#0d1118] border border-[#3b3430]/80 rounded-sm px-4 py-3 text-sm tracking-widest text-[#dac7bd] placeholder:text-[#5a4e48] focus:outline-none focus:border-[#ffb77b]/60 transition"
               placeholder="Add a custom message (optional)"
               rows={2}
             />
@@ -539,7 +539,7 @@ export default function GuestsPage() {
 
         {/* RIGHT: Telemetry Stream */}
         <div className="px-5 py-6 sm:px-8 lg:py-8">
-          <p className="text-[9px] tracking-[0.3em] text-[#8f8078] mb-7">TELEMETRY_STREAM</p>
+          <p className="text-[9px] tracking-[0.3em] text-[#5d3a30] dark:text-[#8f8078] mb-7">TELEMETRY_STREAM</p>
           <div className="grid grid-cols-2 gap-x-12 gap-y-8">
             <StatCard
               label="SENT"
@@ -583,8 +583,8 @@ export default function GuestsPage() {
           className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
         >
           <div>
-            <p className="text-[9px] tracking-[0.3em] text-[#8f8078] mb-1.5">ARCHIVE_INDEX</p>
-            <h2 className={`${displayFont.className} text-3xl italic text-[#e6dad3]`}>Confirmed Guest Roster</h2>
+            <p className="text-[9px] tracking-[0.3em] text-[#5d3a30] dark:text-[#8f8078] mb-1.5">ARCHIVE_INDEX</p>
+            <h2 className={`${displayFont.className} text-3xl italic text-[#68220D] dark:text-[#e6dad3]`}>Confirmed Guest Roster</h2>
           </div>
           <div className="flex items-center gap-2">
             <button
@@ -611,7 +611,7 @@ export default function GuestsPage() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="mb-6 border border-[#3b3430]/80 bg-[#0d1118] rounded-sm p-5"
+            className="mb-6 border border-[#3b3430]/80 bg-[#2a1f0e] dark:bg-[#0d1118] rounded-sm p-5"
           >
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               {/* Search */}
@@ -679,7 +679,7 @@ export default function GuestsPage() {
           className="overflow-x-auto rounded-sm border border-[#2b2520]/70"
         >
           {/* Table header */}
-          <div className="grid min-w-215 grid-cols-[1fr_130px_180px_160px_80px] border-b border-[#2b2520]/70 bg-[#0d1118]/60 px-5 py-3">
+          <div className="grid min-w-215 grid-cols-[1fr_130px_180px_160px_80px] border-b border-[#2b2520]/70 bg-[#2a1f0e] dark:bg-[#0d1118]/60 px-5 py-3">
             {["IDENTIFICATION", "PEOPLE", "TRANSMISSION STATUS", "VALIDATION DATE", "ACTIONS"].map((col) => (
               <p key={col} className="text-[9px] tracking-[0.24em] text-[#6b5c54] font-semibold">{col}</p>
             ))}
