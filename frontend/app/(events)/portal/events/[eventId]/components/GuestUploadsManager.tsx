@@ -142,7 +142,7 @@ export default function GuestUploadsManager({ eventId }: GuestUploadsProps) {
         </div>
         <button
           onClick={() => setShowGenerateModal(true)}
-          className="rounded-md bg-[#007a4d] px-4 py-2 text-xs font-bold tracking-[0.16em] text-white transition hover:bg-[#008d59]"
+          className="rounded-md  bg-[#007a4d] px-4 py-2 text-xs font-bold tracking-[0.16em] text-white transition hover:bg-[#008d59]"
         >
           + GENERATE LINK
         </button>

@@ -60,7 +60,7 @@ return [
             'report' => false,
         ],
 
-        'supabase' => [
+        'supabase' => (env('SUPABASE_ACCESS_KEY') && !str_contains(env('SUPABASE_URL', ''), 'xxxxxxxxxxxxx')) ? [
             'driver' => 's3',
             'key' => env('SUPABASE_ACCESS_KEY'),
             'secret' => env('SUPABASE_SECRET_KEY'),
@@ -74,6 +74,13 @@ return [
             'http' => [
                 'verify' => env('SUPABASE_SSL_VERIFY', true),
             ],
+        ] : [
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
+            'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
+            'visibility' => 'public',
+            'throw' => true,
+            'report' => false,
         ],
 
     ],

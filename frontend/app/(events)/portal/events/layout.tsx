@@ -215,7 +215,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
             <button
               type="button"
               aria-label="Power / Logout"
-              className="grid h-10 w-10 place-items-center rounded-xl text-[#6b5c54] hover:text-[#ffb77b] transition"
+              className="grid h-10 w-10 place-items-center rounded-xl text-[#6b5c54] hover:text-black dark:hover:text-[#ffb77b] transition"
             >
               <PowerIcon />
             </button>

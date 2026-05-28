@@ -476,16 +476,16 @@ export default function SchedulePage() {
             </div>
 
             <div className="grid gap-2 grid-cols-3 sm:gap-3 lg:grid-cols-3">
-              <div className="rounded-xl border border-white/10 bg-[#2a1f0e] dark:bg-[#111821] p-2.5 sm:rounded-2xl sm:p-4">
+              <div className="rounded-xl border border-white/10 bg-[#3b2a10] dark:bg-[#111821] p-2.5 sm:rounded-2xl sm:p-4">
                 <p className="text-[8px] tracking-[0.24em] text-[#8f8078] sm:text-[9px]">MONTH EVENTS</p>
                 <p className="mt-1.5 text-2xl font-semibold text-[#ffcfaa] sm:mt-2 sm:text-3xl">{monthEvents.length.toString()}</p>
               </div>
-              <div className="rounded-xl border border-white/10 bg-[#2a1f0e] dark:bg-[#111821] p-2.5 sm:rounded-2xl sm:p-4">
+              <div className="rounded-xl border border-white/10 bg-[#3b2a10] dark:bg-[#111821] p-2.5 sm:rounded-2xl sm:p-4">
                 <p className="text-[8px] tracking-[0.24em] text-[#8f8078] sm:text-[9px]">SELECTED DAY</p>
                 <p className="mt-1.5 text-sm font-semibold text-[#e8ddd4] sm:mt-2 sm:text-base">{formatShortDay(selectedDateKey)}</p>
                 <p className="mt-0.5 text-[9px] tracking-[0.16em] text-[#8f8078] sm:mt-1 sm:text-[11px]">{selectedDateEvents.length} event(s)</p>
               </div>
-              <div className="rounded-xl border border-white/10 bg-[#2a1f0e] dark:bg-[#111821] p-2.5 sm:rounded-2xl sm:p-4">
+              <div className="rounded-xl border border-white/10 bg-[#3b2a10] dark:bg-[#111821] p-2.5 sm:rounded-2xl sm:p-4">
                 <p className="text-[8px] tracking-[0.24em] text-[#8f8078] sm:text-[9px]">STATUS</p>
                 <p className="mt-1.5 text-sm font-semibold text-[#a7f3d0] sm:mt-2 sm:text-base">LIVE</p>
                 <p className="mt-0.5 text-[9px] tracking-[0.16em] text-[#8f8078] sm:mt-1 sm:text-[11px]">Responsive calendar ready</p>
@@ -629,7 +629,7 @@ export default function SchedulePage() {
                 <button
                   type="button"
                   onClick={handleOpenComposerForSelectedDate}
-                  className="flex items-center gap-1 rounded-full border border-[#ffb77b]/30 bg-[#2a1f0e] px-2.5 py-1.5 text-[8px] font-semibold tracking-[0.2em] text-[#ffcfaa] transition hover:bg-[#ffb77b]/15 sm:px-3 sm:py-2 sm:text-[9px]"
+                  className="flex items-center gap-1 rounded-full border border-[#ffb77b]/30 bg-[#3b2a10] px-2.5 py-1.5 text-[8px] font-semibold tracking-[0.2em] text-[#ffcfaa] transition hover:bg-[#ffb77b]/15 sm:px-3 sm:py-2 sm:text-[9px]"
                   aria-label="Add event for selected date"
                   title="Add event"
                 >
@@ -671,7 +671,7 @@ export default function SchedulePage() {
                 )}
               </div>
 
-              <div className="mt-4 rounded-2xl border border-white/10 bg-[#2a1f0e] dark:bg-[#111821] p-3 sm:mt-5 sm:rounded-3xl sm:p-4">
+              <div className="mt-4 rounded-2xl border border-white/10 bg-[#3b2a10] dark:bg-[#111821] p-3 sm:mt-5 sm:rounded-3xl sm:p-4">
                 <div className="flex items-center gap-1.5 text-[9px] font-semibold tracking-[0.26em] text-[#8f8078] sm:gap-2 sm:text-[10px]">
                   <CalendarIcon />
                   QUICK ADD

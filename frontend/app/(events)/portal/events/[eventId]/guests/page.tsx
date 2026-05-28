@@ -168,11 +168,13 @@ function StatCard({
   label,
   value,
   accent,
+  barAccent,
   delay,
 }: {
   label: string;
   value: string;
   accent: string;
+  barAccent: string;
   delay: number;
 }) {
   return (
@@ -182,9 +184,15 @@ function StatCard({
       transition={{ duration: 0.4, delay }}
       className="flex flex-col gap-1"
     >
-      <p className="text-[9px] tracking-[0.22em] text-[#5d3a30] dark:text-[#8f8078]">{label}</p>
-      <p className={`text-4xl font-semibold leading-none`} style={{ color: accent }}>{value}</p>
-      <div className="mt-1.5 h-0.5 w-8 rounded-full" style={{ background: accent }} />
+      <p className="text-[9px] tracking-[0.22em] text-[#5d3a30] dark:text-[#8f8078]">
+        {label}
+      </p>
+
+      <p className={`text-4xl font-semibold leading-none ${accent}`}>
+        {value}
+      </p>
+
+      <div className={`mt-1.5 h-0.5 w-8 rounded-full ${barAccent}`} />
     </motion.div>
   );
 }
@@ -544,30 +552,34 @@ export default function GuestsPage() {
             <StatCard
               label="SENT"
               value={sentCount.toString()}
-              accent="#e6dad3"
+              accent="text-[#8a827e] dark:text-[#e6dad3]"
+              barAccent="bg-[#8a827e] dark:bg-[#e6dad3]"
               delay={0.1}
             />
 
             <StatCard
               label="ACCEPTED"
               value={acceptedCount.toString()}
-              accent="#ffb77b"
+              accent="text-[#ffa962] dark:text-[#ffb77b]"
+              barAccent="bg-[#ffa962] dark:bg-[#ffb77b]"
               delay={0.15}
             />
 
             <StatCard
               label="REJECTED"
               value={rejectedCount.toString()}
-              accent="#ff9e9e"
+              accent="text-[#ff8585] dark:text-[#ff9e9e]"
+              barAccent="bg-[#ff8585] dark:bg-[#ff9e9e]"
               delay={0.2}
             />
 
-            <StatCard
-              label="SCHEDULED"
-              value={scheduledCount.toString()}
-              accent="#67d4ff"
-              delay={0.25}
-            />
+              <StatCard
+                label="SCHEDULED"
+                value={scheduledCount.toString()}
+                accent="text-[#5cbee5] dark:text-[#67d4ff]"
+                barAccent="bg-[#5cbee5] dark:bg-[#67d4ff]"
+                delay={0.25}
+              />
           </div>
         </div>
       </motion.div>
@@ -712,19 +724,19 @@ export default function GuestsPage() {
               <div className="flex items-center gap-3">
                 <div className={`grid h-8 w-8 shrink-0 place-items-center rounded-sm border ${
                   guest.icon === "user"
-                    ? "border-[#ffb77b]/35 bg-[#ffb77b]/10 text-[#ffb77b]"
-                    : "border-[#8f8078]/35 bg-[#8f8078]/10 text-[#8f8078]"
+                    ? "border-[#ffb77b]/35 bg-[#ffb77b]/10 text-[#371a11] dark:text-[#ffb77b]"
+                    : "border-[#8f8078]/35 bg-[#8f8078]/10 text-gray-600 dark:text-[#8f8078]"
                 }`}>
                   {guest.icon === "user" ? <UserIcon /> : <HourglassIcon />}
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-[#e6dad3]">{guest.name}</p>
+                  <p className="text-sm font-medium text-[#9b5844] dark:text-[#e6dad3]">{guest.name}</p>
                   <p className="text-[10px] tracking-widest text-[#6b5c54] mt-0.5">{guest.email}</p>
                 </div>
               </div>
 
               {/* People Count */}
-              <p className="text-[11px] font-semibold tracking-[0.18em] text-[#dac7bd]">{guest.peopleCount}</p>
+              <p className="text-[11px] font-semibold tracking-[0.18em] text-[#9b5844] dark:text-[#dac7bd]">{guest.peopleCount}</p>
 
               {/* Status */}
               <div>
@@ -732,7 +744,7 @@ export default function GuestsPage() {
               </div>
 
               {/* Date */}
-              <p className="text-[11px] tracking-[0.14em] text-[#9f8e86]">{guest.date}</p>
+              <p className="text-[11px] tracking-[0.14em] text-[#9b5844] dark:text-[#9f8e86]">{guest.date}</p>
 
               {/* Actions */}
               <div className="relative flex justify-end">
@@ -740,7 +752,7 @@ export default function GuestsPage() {
                   type="button"
                   aria-label="More actions"
                   onClick={() => setOpenActionsFor((current) => current === guest.id ? null : guest.id)}
-                  className="text-[#5a4e48] hover:text-[#ffb77b] transition group-hover:text-[#9f8e86]"
+                  className="text-[#9b5844] dark:text-[#5a4e48] hover:text-[#ffb77b] transition group-hover:text-[#9f8e86]"
                 >
                   <DotsIcon />
                 </button>
